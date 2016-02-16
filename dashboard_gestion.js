@@ -29,27 +29,52 @@ if (Meteor.isClient) {
         }
     });
 
-
     Template.contrat.helpers({
         services: function(){
             return Services.find({});
         }
     });
 
+    // TEMPLATE REPORT
     Template.report.helpers({
         months: function(){
             return tabMonth;
+        },
+
+        showRev: function(){
+            return Session.get('showRev');
+        }
+    });
+
+    Template.tab_rev.helpers({
+        rev_month: function(){
+            return Session.get('data');
+        },
+        total: function(){
+            return getTotalData_Rev();
         }
     });
 
     Template.report.events({
-        'click .month-select': function(){
-            console.log(this);
-        }
+       'click .month-select': function(){
+           var tabMois = ['Janvier', 'Fevrier','Mars','Avril','Mai','Juin', 'Juillet', 'Aout','Septembre','Octobre','Novembre','Decembre'];
+           var mois = '';
+           var annee = $('#year').val();
+
+           for (var i=0; i<tabMonth.length; i++){
+               if(tabMonth[i] == this){
+                    mois = tabMois[i];
+               }
+           }
+
+           Session.set('showRev', true);
+           getDataRevByMonth(annee,mois);
+           Session.set('data', data_rev);
+       }
     });
 
     Template.test.helpers({
-        jan: function(){
+        janvier: function(){
             return getRevByMonth('Janvier','20160101');
         },
 
@@ -60,8 +85,17 @@ if (Meteor.isClient) {
         }
     });
 
-
-
+    Template.test.events({
+        'click .upd': function(){
+            var an = '';
+            data = Revenus.find();
+            data.forEach(function(row){
+               an = row.annee.substring(0,4);
+                console.log(row._id);
+                Revenus.update(row._id,{$set: {annee: an}});
+            });
+        }
+    })
 
 }
 

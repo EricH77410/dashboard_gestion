@@ -6,9 +6,7 @@
 
     <div class="container">
         {{>nav}}
-
         <h1>Dashboard Gestion</h1>
-        {{> tableau }}
     </div>
 </body>
 
@@ -57,25 +55,29 @@
 </template>
 
 <template name="contrat">
-    <h1>Contracts</h1>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Code</th>
-            <th>Description</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#each services}}
+    <div class="container">
+        <h1>Contracts</h1>
+        <table class="table">
+            <thead>
             <tr>
-                <td>{{nom}}</td>
-                <td>{{code}}</td>
-                <td>{{description}}</td>
-                <td>{{prix_ht}}</td>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Price</th>
             </tr>
-        {{/each}}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {{#each services}}
+                <tr>
+                    <td>{{nom}}</td>
+                    <td>{{code}}</td>
+                    <td>{{description}}</td>
+                    <td>{{prix_ht}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+
 </template>

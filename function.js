@@ -42,3 +42,25 @@ getDataRev = function(tabAnnee){
         }
     }
 };
+
+getDataRevByMonth = function(sAnnee, sMonth){
+    data_rev =[];
+    var req = Revenus.find({annee: sAnnee, mois: sMonth}).fetch();
+    for (var i=0; i<req.length; i++ ){
+        data_rev.push({
+            code: getServiceLabel(req[i].idservices),
+            montant: req[i].montant,
+            annee: req[i].annee,
+            mois: req[i].mois
+        });
+    }
+}
+
+getTotalData_Rev = function(){
+    var total = 0;
+    var data = Session.get('data');
+    for (var i=0; i<data.length; i++){
+        total = total+data[i].montant;
+    }
+    return total;
+}
