@@ -6,7 +6,7 @@
 getServiceLabel = function(index){
     var contrat = Services.findOne({idservices: index});
     return contrat.code;
-}
+};
 
 // Function revenu by month
 getRevByMonth = function(sMois, sAnnee){
@@ -16,17 +16,17 @@ getRevByMonth = function(sMois, sAnnee){
         rev = rev + parseFloat(request[i].montant);
     }
     return rev;
-}
+};
 
 // Function revenu by contract
-getRevByContract = function(sCodeContrat, sAnnee, sMois){
-    var request = Revenus.find({annee: sAnnee, mois: sMois, code: sCodeContrat}).fetch();
+getRevByContract = function(idContrat, sAnnee, sMois){
+    var request = Revenus.find({annee: sAnnee, mois: sMois, idservices: idContrat}).fetch();
     var rev = 0;
     for (var i=0; i<request.length; i++){
         rev = rev + parseFloat(request[i].montant);
     }
     return rev;
-}
+};
 
 // Fill the data_rev array
 getDataRev = function(tabAnnee){
@@ -41,4 +41,4 @@ getDataRev = function(tabAnnee){
             });
         }
     }
-}
+};

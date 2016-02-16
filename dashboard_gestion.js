@@ -29,6 +29,25 @@ if (Meteor.isClient) {
         }
     });
 
+
+    Template.contrat.helpers({
+        services: function(){
+            return Services.find({});
+        }
+    });
+
+    Template.report.helpers({
+        months: function(){
+            return tabMonth;
+        }
+    });
+
+    Template.report.events({
+        'click .month-select': function(){
+            console.log(this);
+        }
+    });
+
     Template.test.helpers({
         jan: function(){
             return getRevByMonth('Janvier','20160101');
@@ -40,6 +59,7 @@ if (Meteor.isClient) {
             return data_rev;
         }
     });
+
 
 
 

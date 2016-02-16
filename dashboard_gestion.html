@@ -1,5 +1,5 @@
 <head>
-  <title>dashboard_gestion</title>
+  <title>Dashboard gestion</title>
 </head>
 
 <body>
@@ -9,9 +9,6 @@
 
         <h1>Dashboard Gestion</h1>
         {{> tableau }}
-
-        <h3>test</h3>
-        {{> test}}
     </div>
 </body>
 
@@ -36,25 +33,20 @@
             {{/each}}
         </tbody>
     </table>
-
-
 </template>
 
 <template name="nav">
     <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
         <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand" href="#">CS Trophy Gestion</a>
+            <div class="navbar-header"><a class="navbar-brand" href="/">CS Trophy Gestion</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                 </button>
             </div>
             <div class="collapse navbar-collapse navbar-menubuilder">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="/">Home</a>
-                    </li>
-                    <li><a href="">Revenus</a>
-                    </li>
-                    <li><a href="">Contracts</a>
-                    </li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/report">Report</a></li>
+                    <li><a href="/contrat">Contracts</a></li>
                 </ul>
             </div>
         </div>
@@ -64,6 +56,26 @@
 <template name="rev">
 </template>
 
-<template name="test">
-    {{dataRev}}
+<template name="contrat">
+    <h1>Contracts</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each services}}
+            <tr>
+                <td>{{nom}}</td>
+                <td>{{code}}</td>
+                <td>{{description}}</td>
+                <td>{{prix_ht}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
 </template>
