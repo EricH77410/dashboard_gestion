@@ -15,7 +15,7 @@ getRevByMonth = function(sMois, sAnnee){
     for (var i=0; i<request.length; i++){
         rev = rev + parseFloat(request[i].montant);
     }
-    return rev;
+    return rev.toFixed(2);
 };
 
 // Function revenu by contract
@@ -23,9 +23,10 @@ getRevByContract = function(idContrat, sAnnee, sMois){
     var request = Revenus.find({annee: sAnnee, mois: sMois, idservices: idContrat}).fetch();
     var rev = 0;
     for (var i=0; i<request.length; i++){
-        rev = rev + parseFloat(request[i].montant);
+        rev = rev + parseFloat(request[i].montant).toFixed(2);
     }
-    return rev;
+    console.log(rev.toFixed(2));
+    return rev.toFixed(2);
 };
 
 // Fill the data_rev array
@@ -44,6 +45,7 @@ getDataRev = function(tabAnnee){
 };
 
 getDataRevByMonth = function(sAnnee, sMonth){
+
     data_rev =[];
     var req = Revenus.find({annee: sAnnee, mois: sMonth}).fetch();
     for (var i=0; i<req.length; i++ ){
@@ -64,3 +66,44 @@ getTotalData_Rev = function(){
     }
     return total;
 }
+
+// Fonction pour le chart
+initChart = function(donneeChart){
+
+    var data ={
+        labels: tabMonth,
+        datasets:[{
+            label: '1st',
+            fillColor: "rgba(255,0,0,0.3)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: []
+        },
+        {
+            label: "2nd",
+            fillColor: "rgba(0,0,255,0.3)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: []
+        }]
+    };
+
+    for (var i = 0; i<12; i++){
+        data.datasets[0].data.push(donneeChart[i]);
+    }
+
+    for (var j = 12; j<donneeChart.length; j++){
+        data.datasets[1].data.push(donneeChart[j]);
+    }
+
+    var ctx = $('#chart-compare').get(0).getContext("2d");
+    var newchart = new Chart(ctx).Bar(data,{});
+
+}
+

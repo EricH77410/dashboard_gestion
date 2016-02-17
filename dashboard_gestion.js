@@ -2,6 +2,7 @@ Revenus = new Mongo.Collection('revenus');
 Services = new Mongo.Collection('services');
 
 tabMonth = ['January', 'February','March','April','May','June', 'July', 'August','September','October','November','December'];
+tabMois = ['Janvier', 'Fevrier','Mars','Avril','Mai','Juin', 'Juillet', 'Aout','Septembre','Octobre','Novembre','Decembre'];
 data_rev = [];
 
 if (Meteor.isServer) {
@@ -57,7 +58,6 @@ if (Meteor.isClient) {
 
     Template.report.events({
        'click .month-select': function(){
-           var tabMois = ['Janvier', 'Fevrier','Mars','Avril','Mai','Juin', 'Juillet', 'Aout','Septembre','Octobre','Novembre','Decembre'];
            var mois = '';
            var annee = $('#year').val();
 
@@ -95,7 +95,22 @@ if (Meteor.isClient) {
                 Revenus.update(row._id,{$set: {annee: an}});
             });
         }
-    })
+    });
+
+    Template.compare.helpers({
+        getData: function(){
+            data_rev_chart = [];
+            for (var i=0; i<tabMois.length; i++){
+                data_rev_chart.push(getRevByMonth(tabMois[i],'2014'));
+            }
+
+            for (var j=0; j<tabMois.length; j++){
+                data_rev_chart.push(getRevByMonth(tabMois[j],'2015'));
+            }
+
+            initChart(data_rev_chart);
+        }
+    });
 
 }
 

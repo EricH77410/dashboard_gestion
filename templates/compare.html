@@ -1,0 +1,25 @@
+<template name="compare">
+    <div class="container">
+        <h1>Compare</h1>
+        {{> query_design}}
+
+        {{getData}}
+        <canvas id="chart-compare" width="1000" height="600">
+
+        </canvas>
+    </div>
+</template>
+
+<template name="query_design">
+    <form class="form-horizontal">
+        <fieldset>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Year</label>
+                <div class="col-md-2">
+                    <input id="year1" name="textinput" placeholder="placeholder" class="form-control input-md" type="text">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</template>
