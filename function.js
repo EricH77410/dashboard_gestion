@@ -51,7 +51,7 @@ getDataRevByMonth = function(sAnnee, sMonth){
     for (var i=0; i<req.length; i++ ){
         data_rev.push({
             code: getServiceLabel(req[i].idservices),
-            montant: req[i].montant,
+            montant: req[i].montant.toFixed(2),
             annee: req[i].annee,
             mois: req[i].mois
         });
@@ -64,46 +64,18 @@ getTotalData_Rev = function(){
     for (var i=0; i<data.length; i++){
         total = total+data[i].montant;
     }
-    return total;
+    return total.toFixed(2);
 }
 
-// Fonction pour le chart
-initChart = function(donneeChart){
+getRevForChart = function(tabAnnees){
+    var tabRetour = [];
 
-    var data ={
-        labels: tabMonth,
-        datasets:[{
-            label: '1st',
-            fillColor: "rgba(255,0,0,0.3)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
-            data: []
-        },
-        {
-            label: "2nd",
-            fillColor: "rgba(0,0,255,0.3)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(151,187,205,1)",
-            data: []
-        }]
-    };
-
-    for (var i = 0; i<12; i++){
-        data.datasets[0].data.push(donneeChart[i]);
+    for (var i=0; i<tabAnnees.length; i++){
+        for (j=0; j<tabMois.length; j++){
+            tabRetour.push(getRevByMonth(tabMois[j],tabAnnees[i]));
+        }
     }
 
-    for (var j = 12; j<donneeChart.length; j++){
-        data.datasets[1].data.push(donneeChart[j]);
-    }
-
-    var ctx = $('#chart-compare').get(0).getContext("2d");
-    var newchart = new Chart(ctx).Bar(data,{});
-
+    return tabRetour;
 }
 

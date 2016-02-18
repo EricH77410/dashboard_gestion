@@ -100,17 +100,29 @@ if (Meteor.isClient) {
     Template.compare.helpers({
         getData: function(){
             data_rev_chart = [];
+
+            for (var h=0; h<tabMois.length; h++){
+                data_rev_chart.push(getRevByMonth(tabMois[h],'2013'));
+            }
             for (var i=0; i<tabMois.length; i++){
                 data_rev_chart.push(getRevByMonth(tabMois[i],'2014'));
             }
-
             for (var j=0; j<tabMois.length; j++){
                 data_rev_chart.push(getRevByMonth(tabMois[j],'2015'));
             }
 
             initChart(data_rev_chart);
+        },
+        test: function(){
+            return getRevForChart(['2013','2014','2015']);
+        },
+        getChart: function(){
+            //data_rev_chart = getRevForChart(['2013','2014','2015']);
+            //console.log(data_rev_chart);
+            initChart(getRevForChart(['2013','2014','2015']));
         }
     });
+
 
 }
 
