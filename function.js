@@ -25,12 +25,12 @@ getRevByContract = function(idContrat, sAnnee, sMois){
     for (var i=0; i<request.length; i++){
         rev = rev + parseFloat(request[i].montant).toFixed(2);
     }
-    console.log(rev.toFixed(2));
-    return rev.toFixed(2);
+    return parseFloat(rev).toFixed(2);
 };
 
 // Fill the data_rev array
 getDataRev = function(tabAnnee){
+    data_rev =[];
     for(var i=0; i<tabAnnee.length; i++){
         var req = Revenus.find({annee: tabAnnee[i]}).fetch();
         for (var j=0; j<req.length; j++){
@@ -42,6 +42,43 @@ getDataRev = function(tabAnnee){
             });
         }
     }
+    Session.set('data', data_rev);
+    var tot = getTotalData_Rev();
+    Session.set('total', tot);
+};
+
+getDataYear = function(sYear){
+    data_year = [];
+    var rev = 0;
+    var sCode = '';
+    var req = Services.find({}).fetch();
+
+    for (var i=0; i<req.length; i++){
+        rev =0;
+        sCode = req[i].code;
+
+        for (var j=0; j<tabMois.length; j++){
+            rev = rev + parseFloat(getRevByContract(req[i].idservices,sYear,tabMois[j]));
+        }
+
+        console.log(sCode + ' -> ' + parseFloat(rev).toFixed(2));
+
+        if (rev > 0){
+            data_year.push({
+                code: sCode,
+                annee: sYear,
+                montant: parseFloat(rev).toFixed(2)
+            });
+        }
+    }
+
+    Session.set('data', data_year);
+    Session.set('total',getTotalData_Rev());
+}
+
+getPourcentageRev = function(rev){
+    var p = 100*(rev) / Session.get('total')
+    return p.toFixed(2);
 };
 
 getDataRevByMonth = function(sAnnee, sMonth){
@@ -56,15 +93,19 @@ getDataRevByMonth = function(sAnnee, sMonth){
             mois: req[i].mois
         });
     }
+
+    Session.set('data', data_rev);
+    var tot = getTotalData_Rev();
+    Session.set('total', tot);
 }
 
 getTotalData_Rev = function(){
     var total = 0;
     var data = Session.get('data');
     for (var i=0; i<data.length; i++){
-        total = total+data[i].montant;
+        total = total+parseFloat(data[i].montant);
     }
-    return total.toFixed(2);
+    return parseFloat(total).toFixed(2);
 }
 
 getRevForChart = function(tabAnnees){

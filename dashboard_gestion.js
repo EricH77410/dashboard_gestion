@@ -51,10 +51,10 @@ if (Meteor.isClient) {
             return Session.get('data');
         },
         total: function(){
-            return getTotalData_Rev();
+            return Session.get('total');
         },
         pourcentage: function(){
-            return 0;
+            return getPourcentageRev(this.montant);
         }
     });
 
@@ -71,31 +71,16 @@ if (Meteor.isClient) {
 
            Session.set('showRev', true);
            getDataRevByMonth(annee,mois);
-           Session.set('data', data_rev);
-       }
-    });
+       },
+        'click .year-select': function(){
+            var annee = $('#year').val();
+            if (!annee){
+                console.log('annee par defaut');
+                annee = '2016';
+            }
 
-    Template.test.helpers({
-        janvier: function(){
-            return getRevByMonth('Janvier','20160101');
-        },
-
-        dataRev: function(){
-            var tab = ['20160101','20150101', '20140101'];
-            getDataRev(tab);
-            return data_rev;
-        }
-    });
-
-    Template.test.events({
-        'click .upd': function(){
-            var an = '';
-            data = Revenus.find();
-            data.forEach(function(row){
-               an = row.annee.substring(0,4);
-                console.log(row._id);
-                Revenus.update(row._id,{$set: {annee: an}});
-            });
+            getDataYear(annee);
+            Session.set('showRev', true);
         }
     });
 
