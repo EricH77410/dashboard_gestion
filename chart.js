@@ -98,4 +98,5 @@ initChart = function(donneeChart){
     }
 
     var newchart = new Chart(ctx).Line(data,options);
+
 }

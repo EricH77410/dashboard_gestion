@@ -41,7 +41,6 @@ if (Meteor.isClient) {
         months: function(){
             return tabMonth;
         },
-
         showRev: function(){
             return Session.get('showRev');
         }
@@ -53,6 +52,9 @@ if (Meteor.isClient) {
         },
         total: function(){
             return getTotalData_Rev();
+        },
+        pourcentage: function(){
+            return 0;
         }
     });
 
@@ -117,12 +119,9 @@ if (Meteor.isClient) {
             return getRevForChart(['2013','2014','2015']);
         },
         getChart: function(){
-            //data_rev_chart = getRevForChart(['2013','2014','2015']);
-            //console.log(data_rev_chart);
             initChart(getRevForChart(['2013','2014','2015']));
         }
     });
-
 
 }
 

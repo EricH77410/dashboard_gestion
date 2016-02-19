@@ -18,7 +18,7 @@ getRevByMonth = function(sMois, sAnnee){
     return rev.toFixed(2);
 };
 
-// Function revenu by contract
+// Function revenu by contract, month and year
 getRevByContract = function(idContrat, sAnnee, sMois){
     var request = Revenus.find({annee: sAnnee, mois: sMois, idservices: idContrat}).fetch();
     var rev = 0;
@@ -51,7 +51,7 @@ getDataRevByMonth = function(sAnnee, sMonth){
     for (var i=0; i<req.length; i++ ){
         data_rev.push({
             code: getServiceLabel(req[i].idservices),
-            montant: req[i].montant.toFixed(2),
+            montant: req[i].montant,
             annee: req[i].annee,
             mois: req[i].mois
         });
