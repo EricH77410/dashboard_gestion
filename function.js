@@ -152,4 +152,19 @@ getDataSeries = function(tabYear){
     Session.set('chartData', dataSeries);
 }
 
+// ==============
+// PRICE INCREASE
+// ==============
+priceInc= function (init_price) {
+    var newPrice = (init_price * 6) / 100;
+    return newPrice.toFixed(2);
+}
+
+priceVatIncluded = function(price){
+    var VatPrice = parseFloat((price * 20) / 100);
+    var returnPrice = parseFloat(VatPrice)+parseFloat(price);
+    return returnPrice.toFixed(2);
+}
+
+
 

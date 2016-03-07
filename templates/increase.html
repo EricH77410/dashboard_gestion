@@ -1,0 +1,33 @@
+<template name="increase">
+    <div class="container">
+        <h1>Price increase by 6%</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#Num</th>
+                <th>Contract</th>
+                <th>Description</th>
+                <th>Old Price</th>
+                <th>New Price</th>
+                <th>Increase</th>
+                <th>Vat included</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each contratcs}}
+                <tr>
+                    <td>{{catno}}</td>
+                    <td>{{code}}</td>
+                    <td>{{description}}</td>
+                    <td>{{prix_ht}}</td>
+                    <td>{{new_price}}</td>
+                    <td class="red">{{increase}}</td>
+                    <td class="blue">{{price_vat}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+
+    </div>
+
+</template>
