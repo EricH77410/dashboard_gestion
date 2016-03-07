@@ -116,7 +116,40 @@ getRevForChart = function(tabAnnees){
             tabRetour.push(getRevByMonth(tabMois[j],tabAnnees[i]));
         }
     }
-
     return tabRetour;
 }
+
+getDataSeries = function(tabYear){
+  var dataSeries = [];
+
+  var dataObject1 = {};
+  var dataObject2 = {};
+  var dataObject3 = {};
+
+  dataObject1.name = tabYear[0];
+  dataObject2.name = tabYear[1];
+  dataObject3.name = tabYear[2];
+
+  dataObject1.data = [];
+  dataObject2.data = [];
+  dataObject3.data = [];
+
+  for (var h=0; h<tabMois.length; h++){
+      dataObject1.data.push(parseFloat(getRevByMonth(tabMois[h],tabYear[0])));
+  }
+  dataSeries.push(dataObject1);
+
+  for (var i=0; i<tabMois.length; i++){
+      dataObject2.data.push(parseFloat(getRevByMonth(tabMois[i],tabYear[1])));
+  }
+  dataSeries.push(dataObject2);
+
+  for (var j=0; j<tabMois.length; j++){
+      dataObject3.data.push(parseFloat(getRevByMonth(tabMois[j],tabYear[2])));
+  }
+  dataSeries.push(dataObject3);
+  //return dataSeries;
+    Session.set('chartData', dataSeries);
+}
+
 
