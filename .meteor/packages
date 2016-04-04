@@ -24,3 +24,5 @@ highcharts:highcharts-meteor
 
 
 highcharts-container
+reactive-var
+momentjs:moment

@@ -10,3 +10,28 @@ body{
 .red{
     color: red;;
 }
+
+.total{
+  font-weight: bold;
+}
+
+.sortable{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.orange-cell{
+  background-color: #FFB700;
+}
+
+.green-cell{
+  background-color: #5CB85C;
+}
+
+.blue-cell{
+  background-color:  #A4D3FB;
+}
+
+.yellow-cell{
+  background-color: #F2F5A9;
+}
