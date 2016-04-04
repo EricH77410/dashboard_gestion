@@ -1,0 +1,67 @@
+<template name="report">
+    <div class="container">
+        <h1>Report</h1>
+        <label for="">Year</label>
+        <input type="text" id="year" placeholder="2016">
+
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                  {{#each months}}
+                    <li><a class="month-select" href="#">{{this}}</a></li>
+                  {{/each}}
+                    <li><a href="#" class="year-select">Year</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        {{#if showRev}}
+            {{> tab_rev}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="Months">
+  <div class="panel with-nav-tabs panel-default">
+          <div class="panel-heading">
+                  <ul class="nav nav-tabs">
+                      {{#each months}}
+                        <li><a class="month-select" href="" data-toggle="tab">{{this}}</a></li>
+                      {{/each}}
+                      <li><a href="#" class="year-select">Year</a></li>
+                  </ul>
+          </div>
+  </div>
+</template>
+
+
+<template name="tab_rev">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Contract</th>
+                <th class="sortable">Revenu</th>
+                <th>%</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each rev_month}}
+                <tr>
+                    <td>{{annee}}</td>
+                    <td>{{mois}}</td>
+                    <td>{{code}}</td>
+                    <td>{{montant}}</td>
+                    <td class="blue">{{pourcentage}}</td>
+                </tr>
+            {{/each}}
+                <tr>
+                    <td class="total">Total</td>
+                    <td></td>
+                    <td></td>
+                    <td class="total">{{total}}</td>
+                </tr>
+            </tbody>
+        </table>
+</template>

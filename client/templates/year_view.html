@@ -1,0 +1,52 @@
+<template name="YearView">
+
+  <h1>Year {{year}}</h1>
+  {{#if loading}}
+    {{>Loading}}
+  {{/if}}
+  <div class="show-year-rev">
+    <table class="table table-bordred table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="blue-cell">Contracts</th>
+          {{ #each months }}
+            <th class="blue-cell">{{this}}</th>
+          {{ /each }}
+          <th class="blue-cell">Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {{ #each contrat }}
+          <tr>
+            <td class="total green-cell">{{ nom }}</td>
+            {{{getTd}}}
+          </tr>
+        {{ /each }}
+        <tr>
+          <td class="total yellow-cell">Total</td>
+          <td id="Janvier" class="total yellow-cell">{{ totalMois "Janvier"}}</td>
+          <td id="Fevrier" class="total yellow-cell">{{ totalMois "Fevrier"}}</td>
+          <td id="Mars" class="total yellow-cell">{{ totalMois "Mars"}}</td>
+          <td id="Avril" class="total yellow-cell">{{ totalMois "Avril"}}</td>
+          <td id="Mai" class="total yellow-cell">{{ totalMois "Mai"}}</td>
+          <td id="Juin" class="total yellow-cell">{{ totalMois "Juin"}}</td>
+          <td id="Juillet" class="total yellow-cell">{{ totalMois "Juillet"}}</td>
+          <td id="Aout" class="total yellow-cell">{{ totalMois "Aout"}}</td>
+          <td id="Septembre" class="total yellow-cell">{{ totalMois "Septembre"}}</td>
+          <td id="Octobre" class="total yellow-cell">{{ totalMois "Octobre"}}</td>
+          <td id="Novembre" class="total yellow-cell">{{ totalMois "Novembre"}}</td>
+          <td id="Decembre" class="total yellow-cell">{{ totalMois "Decembre"}}</td>
+          <td class="total yellow-cell">{{money totalYear}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button id="export" class="btn btn-primary">Export xls</button>
+  </div>
+</template>
+
+<template name="oneLine">
+  <tr>
+    <td></td>
+  </tr>
+</template>
