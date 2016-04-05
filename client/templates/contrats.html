@@ -1,0 +1,25 @@
+<template name="contrat">
+    <div class="container">
+        <h1>Contracts</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each services}}
+                <tr>
+                    <td>{{nom}}</td>
+                    <td>{{code}}</td>
+                    <td>{{description}}</td>
+                    <td>{{prix_ht}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>
