@@ -1,0 +1,130 @@
+<template name="Home">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum harum molestias accusamus sunt
+        deserunt beatae error soluta impedit,
+        blanditiis reiciendis eum quas ut, deleniti optio fuga sed aut minus minima.
+    </p>
+
+    <div class="row">
+        <div class="container">
+            <h3>Contracts</h3>
+        </div>
+        {{> HomeContract}}
+        <div class="container">
+            <h3>Services</h3>
+        </div>
+        {{> HomeService}}
+    </div>
+
+    <div class="container">
+        {{> HomeGraph}}
+    </div>
+</template>
+
+<template name="HomeContract">
+    <div class="col-sm-6">
+        <h3>This month</h3>
+
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Contract</th>
+                        <th>Qty</th>
+                        <th>Rev</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each dataActual}}
+                        {{> OneLine}}
+                    {{/each}}
+                    <tr>
+                        <td class="total">Total</td>
+                        <td></td>
+                        <td class="total">{{money totalActual}}</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+    <div class="col-sm-6">
+        <h3>Previous year</h3>
+
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>Contract</th>
+                    <th>Qty</th>
+                    <th>Rev</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each dataPrevious}}
+                    {{> OneLine}}
+                {{/each}}
+                <tr>
+                    <td class="total">Total</td>
+                    <td></td>
+                    <td class="total">{{money totalPrevious}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template name="HomeService">
+
+        <div class="col-sm-6">
+            <table class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Qty</th>
+                    <th>Rev</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each dataServiceActual}}
+                    {{> OneLine}}
+                {{/each}}
+                <tr>
+                    <td class="total">Total</td>
+                    <td></td>
+                    <td class="total">{{money totalActual}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <table class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Qty</th>
+                    <th>Rev</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each dataServicePrevious}}
+                    {{> OneLine}}
+                {{/each}}
+                <tr>
+                    <td class="total">Total</td>
+                    <td></td>
+                    <td class="total">{{money totalPrevious}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+</template>
+
+<template name="OneLine">
+    <tr>
+        <td>{{getServiceName catno}}</td>
+        <td>{{qty}}</td>
+        <td>{{money montant}}</td>
+    </tr>
+</template>
+
+<template name="HomeGraph">
+    {{createChart}}
+</template>
