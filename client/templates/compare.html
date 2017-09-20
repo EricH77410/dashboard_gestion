@@ -6,7 +6,9 @@
         <div id="chart">
             {{createChart}}
         </div>
-
+        <div class="compare-data">
+            {{>DataCompare}}
+        </div>
     </div>
 </template>
 
@@ -16,22 +18,113 @@
             <div class="form-group">
                 <label class="col-md-2 control-label" for="textinput">Year1</label>
                 <div class="col-md-2">
-                    <input id="year1" name="textinput" placeholder="" class="form-control input-md" type="text" value="2014">
+                    <input id="year1" name="textinput" placeholder="" class="year_input form-control input-md" type="text" value="2014">
                 </div>
                 <label class="col-md-2 control-label" for="textinput">Year2</label>
                 <div class="col-md-2">
-                    <input id="year2" name="textinput" placeholder="" class="form-control input-md" type="text" value="2015">
+                    <input id="year2" name="textinput" placeholder="" class="year_input form-control input-md" type="text" value="2015">
                 </div>
                 <label class="col-md-2 control-label" for="textinput">Year3</label>
                 <div class="col-md-2">
-                    <input id="year3" name="textinput" placeholder="" class="form-control input-md" type="text" value="2016">
+                    <input id="year3" name="textinput" placeholder="" class="year_input form-control input-md" type="text" value="2016">
                 </div>
             </div>
         </fieldset>
     </form>
+</template>
 
-    <div>
-        <a href="" class="upd">Update</a>
+<template name="DataCompare">
+    <div class="panel-view">        
+        {{# each data}}
+            {{>Panel}}
+        {{/ each}}
     </div>
 
+    <div class="ecart">
+        <!-- {{#each ecart}}
+            <p>
+                {{this}}
+            </p>
+        {{/each}} -->
+     
+    </div>
+</template>
+
+<template name="Panel">  
+        <div class="panel panel-info panel-compare">
+            <div class="panel-heading">
+                <h3 class="panel-title total" align="center">{{annee}} </h3>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Contract</td>
+                                <td>{{money totalContrat}}</td>
+                            </tr>
+                            <tr>
+                                <td>Services</td>
+                                <td>{{money totalService}}</td>
+                            </tr>
+                            <tr>
+                                <td class="total">Total</td>
+                                <td class="total">{{money totalRev}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>                
+            </div>
+            <div class="panel-footer">
+                <a href="#" class="js-detail-view" id="{{annee}}" data-toggle="collapse" data-target="#year{{annee}}" data-index="{{this}}">See year details</a>
+                <div id="year{{annee}}" class="collapse">
+                    <table class="table detail-table-view table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <td class="total">Contracts</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each this.contratRev}}
+                                <tr>
+                                    <td>{{getServiceName catno}}</td>
+                                    <td>{{qty}}</td>
+                                    <td>{{money montant}}</td>
+                                </tr>
+                            {{/each }}
+                            <tr>
+                                <td></td>
+                                <td class="total">{{contratQty}}</td>
+                                <td class="total">{{money totalContrat}}</td>
+                            </tr>
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <td class="total">Services</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each this.serviceRev}}
+                                <tr>
+                                    <td>{{getServiceName catno}}</td>
+                                    <td>{{qty}}</td>
+                                    <td>{{money montant}}</td>
+                                </tr>
+                            {{/each }}
+                            <tr>
+                                <td></td>
+                                <td class="total">{{serviceQty}}</td>
+                                <td class="total">{{money totalService}}</td>
+                            </tr>
+                        </tbody>
+                        <hr>
+                        <tr>
+                            <td class="total">Total</td>
+                            <td></td>
+                            <td class="total">{{money totalRev}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
 </template>

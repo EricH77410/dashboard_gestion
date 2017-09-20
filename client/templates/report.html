@@ -2,21 +2,26 @@
     <div class="container">
         <h1>Report</h1>
         <label for="">Year</label>
-        <input type="text" id="year" placeholder="2016">
+        <input type="text" id="year" placeholder="2017" class="form-control">
 
         <div class="panel with-nav-tabs panel-default">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
                   {{#each months}}
-                    <li><a class="month-select" href="#">{{this}}</a></li>
+                    <li><a class="month-select" href="#" id="{{this}}">{{this}}</a></li>
                   {{/each}}
-                    <li><a href="#" class="year-select">Year</a></li>
+                    <li><a href="#" class="year-select" id="year-view">Year</a></li>
                 </ul>
             </div>
         </div>
-        
+
         {{#if showRev}}
-            {{> tab_rev}}
+            <!--{{> tab_rev}}-->
+            <div class="row center">
+              {{> total_rev}}
+              {{> contrat_rev}}
+              {{> service_rev}}
+            </div>
         {{/if}}
     </div>
 </template>
@@ -34,6 +39,81 @@
   </div>
 </template>
 
+<template name="service_rev">
+  <div class="col-sm-12">
+    <h3 class="center-title ombre">Services</h3>
+      <table class="table table-condensed table-striped table-hover">
+        {{> entete_tableau}}
+        <tbody>
+          {{#each servicesRev}}
+            <tr>
+            {{> ligne_tableau}}
+            <td class="blue">{{pourcentage}}</td>
+            </tr>
+          {{/each}}
+          <tr>
+              <td class="total">Total</td>
+              <td></td>
+              <td></td>
+              <td class="total">{{servicesQty}}</td>
+              <td class="total">{{money service_total}}</td>
+              <td class="total blue">{{poucentage_service}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</template>
+
+<template name="total_rev">
+    <h3 class="total">Total revenu : {{money total}}</h3>
+</template>
+
+<template name="contrat_rev">
+    <div class="col-sm-12">
+      <h3 class="center-title ombre">Contracts</h3>
+
+      <table class="table table-condensed table-striped table-hover">
+        {{> entete_tableau}}
+        <tbody>
+          {{#each contractsRev}}
+            <tr>
+              {{> ligne_tableau}}
+              <td class="blue">{{pourcentage}}</td>
+            </tr>
+          {{/each}}
+          <tr>
+              <td class="total">Total</td>
+              <td></td>
+              <td></td>
+              <td class="total">{{contract_qty}}</td>
+              <td class="total">{{money contract_total}}</td>
+              <td class="total blue">{{poucentage_contrat}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</template>
+
+<Template name="entete_tableau">
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Month</th>
+      <th>Contract</th>
+      <th>Qty</th>
+      <th class="triable">Revenu</th>
+      <th>%</th>
+    </tr>
+  </thead>
+</Template>
+
+<Template name="ligne_tableau">
+      <td>{{annee}}</td>
+      <td>{{mois}}</td>
+      <td>{{getServiceName catno}}</td>
+      <td>{{qty}}</td>
+      <td>{{money montant}}</td>
+</Template>
 
 <template name="tab_rev">
         <table class="table">
@@ -42,6 +122,7 @@
                 <th>Year</th>
                 <th>Month</th>
                 <th>Contract</th>
+                <th>Qty</th>
                 <th class="sortable">Revenu</th>
                 <th>%</th>
             </tr>
@@ -52,7 +133,8 @@
                     <td>{{annee}}</td>
                     <td>{{mois}}</td>
                     <td>{{code}}</td>
-                    <td>{{montant}}</td>
+                    <td>{{qty}}</td>
+                    <td>{{money montant}}</td>
                     <td class="blue">{{pourcentage}}</td>
                 </tr>
             {{/each}}
@@ -60,8 +142,10 @@
                     <td class="total">Total</td>
                     <td></td>
                     <td></td>
-                    <td class="total">{{total}}</td>
+                    <td class="total">{{money total}}</td>
                 </tr>
             </tbody>
         </table>
+
+        <h3>Number of contract : {{contract_qty}}</h3>
 </template>

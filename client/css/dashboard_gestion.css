@@ -1,37 +1,139 @@
 /* CSS declarations go here */
-body{
+
+body {
     margin: 20px;
 }
 
-.blue{
+.blue {
     color: blue;
 }
 
-.red{
-    color: red;;
+.next{
+    float: right;
 }
 
-.total{
-  font-weight: bold;
+.red {
+    color: red;
+    ;
 }
 
-.sortable{
+.total {
+    font-weight: bold;
+}
+
+.sortable {
     text-decoration: underline;
     cursor: pointer;
 }
 
-.orange-cell{
-  background-color: #FFB700;
+.triable {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
-.green-cell{
-  background-color: #5CB85C;
+.orange-cell {
+    background-color: #FFB700;
 }
 
-.blue-cell{
-  background-color:  #A4D3FB;
+.green-cell {
+    background-color: #5CB85C;
 }
 
-.yellow-cell{
-  background-color: #F2F5A9;
+.blue-cell {
+    background-color: #A4D3FB;
 }
+
+.yellow-cell {
+    background-color: #F2F5A9;
+}
+
+.center-title {
+    text-align: center;
+}
+
+.ombre {
+    text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+}
+
+.header-img {
+    max-width: 200px;
+    max-height: 100px;
+    margin-top: -10px;
+}
+
+.active {
+    background: #4595CA;
+    color: white;
+}
+
+.active:hover {
+    background: #4595FF;
+}
+
+.panel-compare {
+    width: 30%;
+    display: inline-block;
+    padding: 5px;
+    margin-right: 20px;
+}
+
+.compare-data {
+    margin: 0 auto;
+}
+
+.panel-year1 {
+    background: #7CB5EC;
+}
+
+.panel-year2 {
+    background: #434348;
+}
+
+.panel-year3 {
+    background: #90ED7D;
+}
+
+.panel-view {
+    padding-top: 50px;
+    padding-left: 50px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid #7CB5EC;
+    background: #F5F5F5;
+}
+
+.detail-table-view {
+    font-size: 0.8em;
+}
+
+.detail-table-view tr:hover {
+    font-weight: bold;
+}
+
+#year{
+    width: 100px;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+#year-view{
+    width: 100px;
+    text-align: right;
+}
+
+.badge-qty{
+    float: right; 
+}
+
+
+/*
+.panel-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.panel-item{
+    margin-right: 10px;
+    width: 35%;
+}
+*/

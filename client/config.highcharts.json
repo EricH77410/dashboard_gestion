@@ -3,7 +3,7 @@
 	"base": "highcharts.js",
 	"adapter": "default",
 	"modules": [
-		"highcharts-3d.src.js",
+		"highcharts-3d.src.js",    
 		"modules/exporting.js",
 		"modules/heatmap.js",
 		"modules/drilldown.js"

@@ -3,4 +3,19 @@
         <button class="add-data">Add Revenu data</button>
         <button class="add-tele">Add telemarketing data</button>
     </div>
+    <div class="container">
+      {{> gencode}}
+    </div>
+</template>
+
+<template name="gencode">
+  <div class="container gencode">
+    <select id="version" name="version">
+      <option value="1">DIS</option>
+      <option value="3">DPMS</option>
+    </select>
+    <input type="text" id="code" placeholder="code">
+    <button id="gen" type="button" name="button">Go</button>
+    <h3 class="total" id="result"></h3>
+  </div>
 </template>

@@ -1,0 +1,82 @@
+<template name="Emailing">
+    <div class="version-tab">
+        {{#each tabVersion}}
+            <button class="btn btn-lg release" id={{this}}>{{this}}</button>
+        {{/each}}
+    </div>
+    <div class="emailing-body">
+        <div class="header-emailing">
+            <p>
+                <img src="img\image001.gif" alt="Logo-Header" id="img-header">
+            </p>
+        </div>
+        <div class="content-emailing">
+            
+            <p></p>
+
+            <!-- Les news -->
+
+            {{# each release_news.content}}
+                <p>{{{this}}}</p>
+            {{/each }}
+
+            <!-- <p>
+                <strong>1. Réglementation des Bridges :</strong><br> Les bridges de base « Pose de prothèse dentaire fixée
+                dentoportée ou implantoportée » ainsi que leurs gestes complémentaires, les piliers et intermédiaires de
+                bridge, sont devenus remboursables sous conditions. Pour répondre à l’exigence de la Sécurité Sociale, vous
+                devez désormais indiquer lors d’une facturation que l’acte est remboursable lorsque celui-ci répond aux conditions
+                de remboursement. Et dans le cas d’une feuille de soins papier ajouter un X sur la ligne d’acte.
+            </p>
+            <p>
+                Afin de vous faciliter cette gestion, lors de la saisie d’un acte remboursable sous condition, un message sera affiché vous
+                demandant si celui-ci est remboursable, ainsi l’information sera automatiquement renseignée dans la feuille
+                de soins électronique et un X sera imprimée dans le cas d’une feuille de soins papier.
+            </p>
+            <p>
+                <strong>2. Intégration de la dernière CCAM v.44.50 :</strong><br>
+                <ol>
+                    <li>Actes de bridges désormais remboursables sous conditions (Bridges de bases HBLD040, HBLD043, HBLD033,
+                        HBLD023 et pour les piliers et intermédiaires de bridge HBMD490, HBMD342, HBMD082, HBMD479, HBMD433,
+                        HBMD072, HBMD081, HBMD087).</li>
+                    <li>Création de l’acte YYYY465, 70€ [Supplément pour examen spécifique préalable et postérieur à l'acte de
+                        pose d'un appareillage en propulsion mandibulaire dans le traitement du syndrome d'apnées-hypopnées
+                        obstructives du sommeil] avec remboursement sous conditions.</li>
+                    <li>Acte LBLD017 [Pose d'un appareillage en propulsion mandibulaire] maintenant remboursable sous conditions.</li>
+                    <li>Suppression des incompatibilités sur les dents 15 et 25 pour les actes HBGD031 [Avulsion d'1 dent permanente
+                        sur arcade avec séparation des racines] et HBGD032 [Avulsion de 2 dents permanentes sur arcade avec
+                        séparation des racines].</li>
+                </ol>
+            </p>
+            <p>
+                <strong>3. Corrections et améliorations diverses :</strong><br> - En FSE, le justificatif d’exonération est
+                désormais systématiquement renseigné <br> - FSE en ALD, un message pouvait être affiché à tort<br> - Devis
+                type optimisé sur les actes multi-dents<br> - Impression du code barres des ordonnances amélioré<br> Et bien
+                d’autres améliorations…
+            </p>
+            <p>
+                <strong>Comment installer cette mise à jour ?</strong><br> Depuis votre poste Serveur, <strong>sélectionnez "Aide"</strong> dans le menu principal de CS Trophy Gestion puis <strong>sélectionnez "Rechercher la mise à jour".</strong>                Le système vous indiquera automatiquement si une mise à jour est nécessaire sur votre poste et vous proposera
+                de la télécharger afin de lancer l'installation. En configuration réseau : il est nécessaire de fermer CS
+                Trophy Gestion sur tous les postes "Client" et de faire l'installation sur le poste dit "Serveur" (ordinateur
+                qui contient votre base de données). La mise à jour sur les postes "Client" sera automatiquement réalisée
+                lors du premier lancement de CS Trophy Gestion.
+            </p> -->
+
+            <!-- Fin des news -->
+            
+        </div>
+        <div class="footer-emailing">
+            <p>
+                En espérant que cette nouvelle mise à jour vous donnera entière satisfaction, nous vous prions d'agréer, cher Docteur l'expression
+                de nos sentiments distingués.
+            </p>
+            <p>
+                L’équipe CS Trophy Gestion.
+            </p>
+            <p>
+                <img src="img\image003.gif" alt="Logo-Footer" id="img-footer"> <br>
+                <a href="http://www.carestreamdental.com">www.carestreamdental.com</a> <br> Trophy, a Carestream Dental Company
+                <br> 4 rue F Pelloutier - Croissy Beaubourg I 77435 I Marne la Vallée Cedex 2 I France
+            </p>
+        </div>
+    </div>
+</template>

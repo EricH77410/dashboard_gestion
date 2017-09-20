@@ -1,0 +1,17 @@
+.emailing-body {
+    font-family: "Calibri";
+}
+
+.emailing-body ol {
+    margin-top: -1px;
+}
+
+.img-header {
+    width: 907;
+    height: 150;
+}
+
+.img-footer {
+    width: 211;
+    height: 56;
+}

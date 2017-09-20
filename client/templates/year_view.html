@@ -1,6 +1,11 @@
 <template name="YearView">
 
-  <h1>Year {{year}}</h1>
+  <div>
+    <h3>Year </h3>
+    <input type="text" id="year-view" placeholder="2016" value="{{year}}" class="form-control">
+  </div>
+
+<hr>
   {{#if loading}}
     {{>Loading}}
   {{/if}}
@@ -41,7 +46,6 @@
         </tr>
       </tbody>
     </table>
-    <button id="export" class="btn btn-primary">Export xls</button>
   </div>
 </template>
 

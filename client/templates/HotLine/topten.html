@@ -1,0 +1,58 @@
+<template name="TopTen">
+
+    <div class="panel with-nav-tabs panel-default">
+        <div class="panel-heading">
+           <ul class="nav nav-tabs">
+            {{#each months}}
+               <li><a class="month-select" href="#" id="{{this}}">{{this}}</a></li>
+            {{/each}}
+               <li><a href="#" class="year-select" id="year-view">Year</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="hotline-header">
+        <h3 class="center-title ombre">Top Da du mois : {{monthSelected}}</h3>
+        <div class="panel-container">
+        {{#each data}}
+            {{>Item}}
+        {{/each}}
+        </div>
+
+    </div>
+
+</template>
+
+<template name="Item">
+        <div class="panel panel-info panel-item">
+                <div class="panel-heading">                
+                    <h3 class="panel-title" ><span class="badge badge-qty">{{qty}}</span> {{cab}} </h3>
+                    <a href="#" class="js-detail-view" id="{{cabid}}" data-toggle="collapse" data-target="#cab{{cabid}}" data-index="{{this}}">See details</a>                
+                </div>
+                <div id="cab{{cabid}}" class="panel-body collapse">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Titre</th>
+                                <th>Desc.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each content}}
+                                <tr>
+                                    <td class="">{{formatDate date}}</td>
+                                    <td class="">{{title}}</td>
+                                    <td class="">{{description}}</td>
+                                </tr>
+                            {{/each}}          
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">               
+                <p>{{annee}} {{mois}}</p>
+                </div>
+            </div>
+
+
+</template>

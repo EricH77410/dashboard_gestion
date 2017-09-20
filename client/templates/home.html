@@ -1,17 +1,22 @@
 <template name="Home">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum harum molestias accusamus sunt
-        deserunt beatae error soluta impedit,
-        blanditiis reiciendis eum quas ut, deleniti optio fuga sed aut minus minima.
-    </p>
 
     <div class="row">
         <div class="container">
-            <h3>Contracts</h3>
+          {{#if loading}}
+            {{>Loading}}
+          {{/if}}
+          <hr/>
+          <div class="home-header">              
+            <h3 class="center-title ombre">Contracts</h3>
+            <button class="previous btn btn-info">Prev </button> <button class="next btn btn-info"> Next</button>
+          </div>          
+          <hr/>
         </div>
         {{> HomeContract}}
         <div class="container">
-            <h3>Services</h3>
+          <hr/>
+            <h3 class="center-title ombre">Services</h3>
+          <hr/>
         </div>
         {{> HomeService}}
     </div>
@@ -19,11 +24,38 @@
     <div class="container">
         {{> HomeGraph}}
     </div>
+
+    <hr/>
+    <div class="container live-info">
+      <h3 class="center-title ombre">Active contract</h3>
+      <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>Contract</th>
+                <th>Qty</th>
+            </tr>
+        </thead>
+        <tbody>
+          {{#each liveInfo.data}}
+            <tr>
+                <td class="">{{name}}</td>
+                <td class="">{{qte}}</td>
+            </tr>
+          {{/each}}
+          <tr>
+            <td class="total">Total</td>
+            <td class="total">{{totalActiveContract}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
 </template>
 
 <template name="HomeContract">
+
     <div class="col-sm-6">
-        <h3>This month</h3>
+        <h3 class="ombre center-title">{{mois}} {{actuYear}}</h3>
 
             <table class="table table-condensed table-hover">
                 <thead>
@@ -39,14 +71,14 @@
                     {{/each}}
                     <tr>
                         <td class="total">Total</td>
-                        <td></td>
+                        <td class="total">{{qty_contract_actual}}</td>
                         <td class="total">{{money totalActual}}</td>
                     </tr>
                 </tbody>
             </table>
     </div>
     <div class="col-sm-6">
-        <h3>Previous year</h3>
+        <h3 class="ombre center-title">{{mois}} {{prevYear}}</h3>
 
         <table class="table table-condensed table-hover">
             <thead>
@@ -62,7 +94,7 @@
                 {{/each}}
                 <tr>
                     <td class="total">Total</td>
-                    <td></td>
+                    <td class="total">{{qty_contract_previous}}</td>
                     <td class="total">{{money totalPrevious}}</td>
                 </tr>
             </tbody>
@@ -87,7 +119,7 @@
                 {{/each}}
                 <tr>
                     <td class="total">Total</td>
-                    <td></td>
+                    <td class="total">{{qty_service_actual}}</td>
                     <td class="total">{{money totalActual}}</td>
                 </tr>
                 </tbody>
@@ -108,7 +140,7 @@
                 {{/each}}
                 <tr>
                     <td class="total">Total</td>
-                    <td></td>
+                    <td class="total">{{qty_service_previous}}</td>
                     <td class="total">{{money totalPrevious}}</td>
                 </tr>
                 </tbody>
@@ -126,5 +158,7 @@
 </template>
 
 <template name="HomeGraph">
-    {{createChart}}
+    <div id="chart">
+        {{createChart}}
+    </div>
 </template>

@@ -1,8 +1,11 @@
 
+// Template.Telemarketing.rendered = function() {
+//   console.log(this.data.fetch());
+// }
 
 Template.Telemarketing.helpers({
   data: function(){
-    return Telemarketing.find();
+    return Telemarketing.find({}, {sort: {from: -1}});
   }
 });
 
