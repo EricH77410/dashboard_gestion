@@ -113,7 +113,7 @@ Template.report.events({
             annee = $("#year").attr('placeholder');
             if (!annee) {
                 console.log('annee par defaut');
-                annee = '2017';
+                annee = '2018';
             }            
         }
 

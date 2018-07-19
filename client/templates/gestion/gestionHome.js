@@ -222,7 +222,6 @@ var getEmail = function (sRow) {
 		} else {
 			var ret = JSON.parse(r.content)[0];
 			var tmp = Session.get('customer-info');
-			console.log(ret);
 			if (ret.email == null) {
 				tmp.email=ret.mail_3;
 			} else {

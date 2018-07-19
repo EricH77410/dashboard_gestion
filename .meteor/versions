@@ -55,6 +55,7 @@ modules-runtime@0.6.5
 momentjs:moment@2.14.4
 mongo@1.1.9_1
 mongo-id@1.0.5
+mrt:jquery-ui@1.9.2
 npm-mongo@1.4.45
 observe-sequence@1.0.12
 ordered-dict@1.0.8

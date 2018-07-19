@@ -4,7 +4,7 @@
 var Highcharts = require('highcharts');
 
 // Load module after Highcharts is loaded
-require('highcharts/modules/exporting')(Highcharts);
+//require('highcharts/modules/exporting')(Highcharts);
 
 Template.Home.onCreated(function() {
     Session.set('loading', true);
@@ -44,7 +44,7 @@ Template.Home.helpers({
         return LiveDataContract.find().fetch()[0];
     },
     totalActiveContract: function() {
-        return LiveDataContract.getTotalActiveContract();
+        return  LiveDataContract.getTotalActiveContract();
     }
 });
 

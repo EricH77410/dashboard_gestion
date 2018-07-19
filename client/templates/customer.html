@@ -1,11 +1,18 @@
 <template name="customer">
   <div class="container">
     {{> customerGraph}}
+      {{>contractGraph}}
   </div>
 </template>
 
 <template name="customerGraph">
     <div id="chart">
+        {{createChart}}
+    </div>
+</template>
+
+<template name="contractGraph">
+    <div id="contrat-chart">
         {{createChart}}
     </div>
 </template>

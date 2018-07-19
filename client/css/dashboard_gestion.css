@@ -1,4 +1,9 @@
 /* CSS declarations go here */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,700');
+
+* {
+    font-family: "Roboto", "Montserrat", sans-serif;
+}
 
 body {
     margin: 20px;
@@ -36,15 +41,15 @@ body {
 }
 
 .green-cell {
-    background-color: #5CB85C;
+    background-color: #69F0AE;
 }
 
 .blue-cell {
-    background-color: #A4D3FB;
+    background-color: #4FC3F7;
 }
 
 .yellow-cell {
-    background-color: #F2F5A9;
+    background-color: #FFF176;
 }
 
 .center-title {

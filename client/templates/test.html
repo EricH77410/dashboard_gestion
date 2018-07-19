@@ -1,8 +1,8 @@
 <template name="test">
-    <div class="container">
+    <!-- <div class="container">
         <button class="add-data">Add Revenu data</button>
         <button class="add-tele">Add telemarketing data</button>
-    </div>
+    </div> -->
     <div class="container">
       {{> gencode}}
     </div>
@@ -11,8 +11,8 @@
 <template name="gencode">
   <div class="container gencode">
     <select id="version" name="version">
-      <option value="1">DIS</option>
       <option value="3">DPMS</option>
+      <option value="1">DIS</option>      
     </select>
     <input type="text" id="code" placeholder="code">
     <button id="gen" type="button" name="button">Go</button>

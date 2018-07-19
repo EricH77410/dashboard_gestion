@@ -1,7 +1,7 @@
 var Highcharts = require('highcharts');
 
 // Load module after Highcharts is loaded
-require('highcharts/modules/exporting')(Highcharts);
+//require('highcharts/modules/exporting')(Highcharts);
 
 Template.compare.onCreated(function() {
     var self = this;
@@ -40,7 +40,7 @@ Template.DataCompare.helpers({
         if (y1) {
             getReportYearCompare([y1,y2,y3]);
         } else {         
-            getReportYearCompare([2014,2015,2016]);
+            getReportYearCompare([2016,2017,2018]);
         }
 
         return Session.get('data_compare');        

@@ -1,0 +1,60 @@
+#sms-year{
+    width: 100px;
+}
+
+#sms-chart-compare{
+    margin-top: 20px;
+}
+
+.form-edit-customer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    margin-top: 2rem;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.box-name {
+    grid-column:  1 / span 1;
+}
+
+.table-sms-customer{
+    margin-top: 10rem;
+}
+
+.command-list {
+    grid-column: 1 / -1;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.command-list h4{
+    text-align: center;
+}
+
+.input-box input {
+    padding: 5px;
+    margin-bottom: 1rem;
+    width: 90%;
+    border: none;
+    border-bottom: 2px solid #f749bc;
+    outline: none;
+}
+
+.input-box label {
+    position: absolute;
+    top: -1.5rem;
+    left: 0.5rem;
+    transition: .3s;
+    color: #777;
+}
+
+.modal-footer {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+}

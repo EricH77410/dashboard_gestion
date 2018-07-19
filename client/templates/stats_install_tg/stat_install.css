@@ -1,0 +1,36 @@
+.install-edit {
+    display: flex;
+}
+
+.install-edit__adr {
+    width: 60%;
+}
+
+.install-edit i{
+    margin-right: 0.7rem;
+}
+
+.install-edit__info {
+    width: 40%;
+    margin-top: 1rem;
+    padding: 15px;
+}
+
+.install-edit__input-date{
+    width: 50%;
+}
+
+.zip-city {
+    display: flex;
+}
+
+.install-serial{
+    padding: 5px 0px;
+    margin-bottom: 2.5rem;
+    font-weight: bold;
+    color:#f749bc;
+    background: #E4E4E4;
+    text-align: center;
+    width: 45%;
+}
+

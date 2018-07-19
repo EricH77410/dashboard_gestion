@@ -1,0 +1,48 @@
+<template name="Stats_hl">
+
+	<div class="stat-header">
+		<label>Date Debut</label>
+		<input id="date1" class="dp"/>
+		<label>Date Fin</label>
+		<input id="date2" class="dp" />
+		<button class="btn btn-sucess" id="go">Go</button>
+	</div>
+
+    <div class="total-call-period">
+        <h3 class="center-title ombre">Total appels sur la periode : {{totalPeriod}}</h3>
+    </div>
+
+	<div class="container stats-container">
+
+        <div class="row">
+            {{#each data}}
+                {{>CallCard}}
+            {{/each}}
+        </div>
+
+	</div>
+	
+</template>
+
+<template name="CallCard">
+
+    <div class="col-xs-18 col-sm-3 col-md-2">
+        <div class="thumbnail">
+            <div class="card-header stats-heading">{{formatDate date}}</div>
+                <div class="card-body stats-body">
+                    <p class="call-am">Matin : <span class="badge badge-secondary">{{am}}</span></p>
+                    <p class="call-pm">Apm : <span class="badge badge-secondary">{{pm}}</span></p>
+            </div>
+            <div class="card-footer">
+                <p class="call-total">Total : <span class="badge badge-primary">{{sum am pm}}</span></p>
+            </div>
+        </div>
+    </div>
+
+</template>
+
+<!--<template name="ChartCall">-->
+    <!--<div id="chart-call">-->
+        <!--{{createChart}}-->
+    <!--</div>-->
+<!--</template>-->

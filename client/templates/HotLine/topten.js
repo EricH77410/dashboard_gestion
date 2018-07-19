@@ -28,7 +28,7 @@ Template.TopTen.events({
                 console.log(mois);
             }
         }
-        Session.set('TopTen', Hotline.getDaPeriod(mois,"2017").fetch())
+        Session.set('TopTen', Hotline.getDaPeriod(mois,"2018").fetch())
         Session.set('MonthSelected', mois);
     }
 });

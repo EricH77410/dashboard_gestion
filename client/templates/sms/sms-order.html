@@ -1,0 +1,151 @@
+<template name="SmsOrder">
+    <h3 class="center-title ombre">SMS Manager</h3>
+
+    <div class="search-bar row-fluid">
+        <!-- SEARCH BY #Client-->
+        <div class="col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control input-lg" placeholder="Customer #" id="js-search-num">
+                <span class="input-group-btn">
+                    <button class="btn btn-info btn-lg js-search-num">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <!-- END SEARCH BY #Client -->
+
+        <!-- SEARCH BY Name-->
+        <div class="col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control input-lg" placeholder="Customer name" id="js-search-name">
+                <span class="input-group-btn">
+                    <button class="btn btn-info btn-lg js-search-name">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <!-- END SEARCH BY Name -->
+
+        <!-- SEARCH BY SMS Qty-->
+        <div class="col-md-4">
+            <div class="input-group">
+                <input type="number" class="form-control input-lg" placeholder="Maximum sms quantity" id="js-search-qty">
+                <span class="input-group-btn">
+                    <button class="btn btn-info btn-lg js-search-qty">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <!-- END SEARCH BY SMS Qty -->
+
+    </div>
+
+    <div class="container">
+
+        {{> ModalEdit }}
+
+        <table class="table table-condensed table-hover table-sms-customer">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th># Client</th>
+                <th>Login</th>
+                <!--<th>Qte</th>-->
+                <!--<th>Action</th>-->
+            </tr>
+            </thead>
+            <tbody>
+                {{#each customerList}}
+                    <tr>
+                        <td>
+                            <a href="#" class="js-edit-customer" data-id="{{_id}}" data-log={{login}} data-pwd={{pwd}} data-idclient={{idclient}}>{{name}}</a>
+                        </td>
+                        <td>{{num_client}}</td>
+                        <td>{{login}}</td>
+                        <!--<td>{{qty}}</td>-->
+                        <!--<td>-->
+                            <!--<button class="btn btn-success js-update" data-log={{login}} data-pwd={{pwd}} data-id={{_id}} data-idclient={{idclient}}>U</button>-->
+                            <!--&lt;!&ndash;<button class="js-edit-customer btn btn-warning" data-id={{_id}}>E</button>&ndash;&gt;-->
+                        <!--</td>-->
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</template>
+
+<template name="ModalEdit">
+    <!-- Modal -->
+    <div class="modal fade" id="modal-edit" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ editCustomer.name }}</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-edit-customer">
+                        <div class="box-qty">
+                            <h4>Sms : <span class="badge">{{editCustomer.qty}}</span></h4>
+                        </div>
+
+                        <div class="input-box box-name">
+                            <input type="text" class="edit-input" name="customer-name" id="customer-name" value={{editCustomer.name}}>
+                            <label for="customer-name">Customer</label>
+                        </div>
+
+                        <div class="input-box box-num">
+                            <input type="text" class="edit-input" name="customer-num" id="customer-num" value={{editCustomer.num_client}}>
+                            <label for="customer-name">Customer #</label>
+                        </div>
+
+                        <div class="input-box box-login">
+                            <input type="text" class="edit-input" name="customer-login" id="customer-login" value={{editCustomer.login}}>
+                            <label for="customer-name">Login</label>
+                        </div>
+
+                        <div class="input-box box-password">
+                            <input type="text" class="edit-input" name="customer-pwde" id="customer-pwd" value={{editCustomer.pwd}}>
+                            <label for="customer-name">Password</label>
+                        </div>
+
+                        <div class="command-list">
+                            <h4>Command list</h4>
+                            <table class="table table-condensed table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>Date</td>
+                                        <td>Qty</td>
+                                        <td>By</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each commandList}}
+                                        <tr>
+                                            <td>{{formatDate date}}</td>
+                                            <td>{{qty}}</td>
+                                            <td></td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success js-submit" data-dismiss="modal">Save</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</template>

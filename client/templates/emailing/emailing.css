@@ -1,9 +1,22 @@
+.version-tab {
+	margin-bottom: 1rem;
+}
+
+.release {
+	margin-right: 1rem;
+}
+
 .emailing-body {
     font-family: "Calibri";
+    font-size: 1.8rem;
 }
 
 .emailing-body ol {
     margin-top: -1px;
+}
+
+.content-emailing {
+	font-weight: 400;	
 }
 
 .img-header {

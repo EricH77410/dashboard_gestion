@@ -1,0 +1,98 @@
+<template name="Stat_Install">
+    <div class="container">
+        {{#if getError}}
+            <div class="alert alert-danger">
+                <a href class="close" data-dismiss="alert" aria-label="close">x</a>
+                {{getError}}
+            </div>
+        {{/if}}
+        
+        <h1 class="center-title ombre">Stats Install V5</h1>
+        <table  class="table table-condensed table-hover table-install">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th># Client</th>
+                    <th>Serial</th>
+                    <th>Sent</th>
+                    <th>Installed</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each data}}
+                    <tr>
+                        <td>
+                            <a href="#" class="js-edit-install"
+                            data-id="{{_id}}" data-row="{{row}}" data-serial="{{serial}}" data-dt_install="{{date_install}}" data-dt_sent="{{date_sent}}"
+                            >{{name}}</a>
+                        </td>
+                        <td>{{num_client}}</td>
+                        <td>{{serial}}</td>
+                        <td>{{formatDate date_sent}}</td>
+                        <td>{{formatDate date_install}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+    </div>
+    {{>InstallGraph}}
+    {{>ModalInstall}}
+</template>
+
+<template name="InstallGraph">
+    <div id="install-chart">
+       {{createChartInstall}}
+    </div>
+</template>
+
+<template name="ModalInstall">
+    <!-- Modal -->
+    <div class="modal fade" id="modal-install" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ editCustomer.name }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body install-edit">
+                            <div class="install-edit__adr">
+                                <h4>{{editCustomer.adr}}</h4>
+                                <h4>{{editCustomer.adr2}}</h4>
+                                <div class="zip-city">
+                                    <h4>{{editCustomer.zip}}</h4>&nbsp;
+                                    <h4>{{editCustomer.city}}</h4>
+                                </div>
+                                <h4><i class="glyphicon glyphicon-envelope"></i> {{editCustomer.email}}</h4>
+                                <h4><i class="glyphicon glyphicon-earphone"></i>{{formatTel editCustomer.tel}}</h4>
+                            </div>
+                            <div class="install-edit__info">
+                                <div class="install-serial">
+                                    {{editCustomer.serial}}
+                                </div>
+                                <div class="input-box install-edit__input-date">
+                                    <input type="date" name="date-install" value="{{dateForInput editCustomer.date_install}}" id="edit-install-dt">
+                                    <label for="date-install">Installed</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <form class="form-edit-customer-install">
+                        <div class="modal-footer">
+
+                            <button type="submit" class="btn btn-success js-submit-install" data-dismiss="modal">Save</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

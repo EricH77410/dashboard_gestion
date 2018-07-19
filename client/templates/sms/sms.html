@@ -1,0 +1,23 @@
+<template name="Sms">
+	<h3 class="center-title ombre">SMS </h3>
+    <form class="form-group">
+        <label>Année</label>
+        <input type="text" class="form-control" id="sms-year" value={{smsYear}}>
+    </form>
+    {{>SmsGraph}}
+
+    {{>SmsCompareGraph}}
+
+</template>
+
+<template name="SmsGraph">
+    <div id="sms-chart">
+        {{createChartSms}}
+    </div>
+</template>
+
+<template name="SmsCompareGraph">
+    <div id="sms-chart-compare">
+        {{smsCompare}}
+    </div>
+</template>

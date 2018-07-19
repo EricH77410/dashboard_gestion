@@ -28,6 +28,18 @@ Meteor.methods({
         });
         return Hotline.insert(data);
     },
+    api_add_contract_month: function(data){
+        console.log(data)
+        return Contract.insert(data);
+    },
+    api_add_stats_hl: function (data) {
+        console.log('received : ',data);        
+        return Stats_hl.insert(data);
+    },
+    api_add_install_tg: function(data){
+        console.log('received: ',data);
+        return Install.insert(data);
+    },
     api_Add_Customer: function(data) {
         console.log(data);
         Customer.insert(data);
@@ -55,11 +67,38 @@ Meteor.methods({
         return 'données reçu';
     },
 
+    api_Add_smsOrder: function(data) {
+        console.log(data);
+        return SmsOrder.insert(data);;
+    },
+    
+    api_add_sms_customer: function (data) {
+        console.log(data);
+        return SmsCustomer.insert(data);
+    },
+
     addRevenu: function() {
         var data = JSON.parse(Assets.getText('serv_mongo.json'));
         data.forEach(function(item) {
             Revenus.insert(item);
         });
+    },
+
+    api_add_recall: function(data){
+        // remove existing dat
+        Recall.remove({});
+        Recall.insert(data)
+        return 'ok'
+    },
+    api_add_reminder: function(data){
+        Reminder.remove({});
+        Reminder.insert(data);
+        return 'ok'
+    },
+    
+    api_add_sms: function (data){
+        console.log(data);
+        return Sms.insert(data);
     },
 
     // Ajout des données de télémarketing (telemarketing.json)

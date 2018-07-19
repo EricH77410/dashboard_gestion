@@ -19,4 +19,11 @@ Meteor.startup(function(){
   //   }
   // })
   //Hotline.remove({});  
+  //Stats_hl.remove({});
+  //Sms.remove({});
+  // SmsOrder.remove({})
+  // SmsCustomer.remove({})
+  //Contract.remove({});
+  //Install.remove({})
+
 });
