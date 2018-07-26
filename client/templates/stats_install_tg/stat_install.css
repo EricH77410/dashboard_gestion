@@ -1,23 +1,37 @@
+.container-install{
+    width: 100%
+}
+
 .install-edit {
     display: flex;
 }
 
 .install-edit__adr {
     width: 60%;
+    border: 1px solid #ccc;
+    padding-left: 1rem;
 }
 
 .install-edit i{
     margin-right: 0.7rem;
 }
 
-.install-edit__info {
-    width: 40%;
-    margin-top: 1rem;
-    padding: 15px;
+.modal-title{
+    text-align: center;
+    font-weight: bold;
 }
 
-.install-edit__input-date{
-    width: 50%;
+.install-edit__info {
+    width: 40%;
+
+    padding: 15px;
+    border: 1px solid #ccc;
+    height: auto;
+}
+
+.install-edit__input-date,
+.install-edit__cnx{
+    width: 48%;
 }
 
 .zip-city {
@@ -26,7 +40,7 @@
 
 .install-serial{
     padding: 5px 0px;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1rem;
     font-weight: bold;
     color:#f749bc;
     background: #E4E4E4;
@@ -34,3 +48,48 @@
     width: 45%;
 }
 
+.install-version{
+    padding: 5px 0px 0px 0px;
+    margin-bottom: 2.5rem;
+    color:#f749bc;
+    background: #E4E4E4;
+    text-align: center;
+    width: 45%;
+    font-weight: bold;
+}
+
+.install-filter{
+    text-align: center;
+    border: 1px solid #cccccc;
+    padding: 5px;
+    background: #eee;
+}
+
+.counter-install {
+    display: inline;
+    padding-left: 50px;
+    font-weight: bold;
+}
+
+.title-da {
+    font-weight: bold;
+}
+.login-da{
+    font-style: italic;
+    color: #777;
+}
+.login-da i {
+    border: 1px solid #777;
+    border-radius: 50%;
+    padding: 4px;
+    margin-top: 5px;
+}
+.desc-da{
+    margin-bottom: 0;
+}
+.desc-da::before,
+.desc-da::after{
+    content: ' " ';
+    color: #777;
+    font-size: 2rem;
+}

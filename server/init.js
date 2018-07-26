@@ -26,4 +26,5 @@ Meteor.startup(function(){
   //Contract.remove({});
   //Install.remove({})
 
+
 });

@@ -33,7 +33,6 @@ Template.Home.rendered = function() {
     setTimeout(function() {
         Session.set('loading', false);
     }, 1000);
-
 }
 
 Template.Home.helpers({

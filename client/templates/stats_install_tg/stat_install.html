@@ -1,5 +1,5 @@
 <template name="Stat_Install">
-    <div class="container">
+    <div class="container-install">
         {{#if getError}}
             <div class="alert alert-danger">
                 <a href class="close" data-dismiss="alert" aria-label="close">x</a>
@@ -8,36 +8,50 @@
         {{/if}}
         
         <h1 class="center-title ombre">Stats Install V5</h1>
-        <table  class="table table-condensed table-hover table-install">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th># Client</th>
-                    <th>Serial</th>
-                    <th>Sent</th>
-                    <th>Installed</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {{#each data}}
+        <div class="row">
+            <div class="col-md-5">
+                {{>InstallGraph}}
+            </div>
+            <div class="col-md-7">
+                <div class="install-filter">
+                    <button class="btn btn-primary js-filter-all">All</button>
+                    <button class="btn btn-warning js-filter-installed">Installed</button>
+                    <button class="btn btn-success js-filter-not">Not Installed</button>
+                    <div class="counter-install">
+                        {{counter}} Rec(s)
+                    </div>
+                </div>
+                <table  class="table table-condensed table-hover table-install">
+                    <thead>
                     <tr>
-                        <td>
-                            <a href="#" class="js-edit-install"
-                            data-id="{{_id}}" data-row="{{row}}" data-serial="{{serial}}" data-dt_install="{{date_install}}" data-dt_sent="{{date_sent}}"
-                            >{{name}}</a>
-                        </td>
-                        <td>{{num_client}}</td>
-                        <td>{{serial}}</td>
-                        <td>{{formatDate date_sent}}</td>
-                        <td>{{formatDate date_install}}</td>
+                        <th>Name</th>
+                        <th># Client</th>
+                        <th>Serial</th>
+                        <th>Sent</th>
+                        <th>Installed</th>
                     </tr>
-                {{/each}}
-            </tbody>
-        </table>
+                    </thead>
 
+                    <tbody>
+                    {{#each data}}
+                        <tr>
+                            <td>
+                                <a href="#" class="js-edit-install"
+                                   data-id="{{_id}}" data-row="{{row}}" data-serial="{{serial}}" data-dt_install="{{date_install}}" data-dt_sent="{{date_sent}}" data-cnx="{{cnx}}"
+                                >{{name}}</a>
+                            </td>
+                            <td>{{num_client}}</td>
+                            <td>{{serial}}</td>
+                            <td>{{formatDate date_sent}}</td>
+                            <td>{{formatDate date_install}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    {{>InstallGraph}}
+
     {{>ModalInstall}}
 </template>
 
@@ -55,8 +69,8 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{{ editCustomer.name }}</h4>
+                    <button type="button" class="close js-close-install" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title ombre">{{ editCustomer.name }}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="card">
@@ -73,13 +87,34 @@
                             </div>
                             <div class="install-edit__info">
                                 <div class="install-serial">
-                                    {{editCustomer.serial}}
+                                    Serial: {{editCustomer.serial}}
+                                </div>
+                                <div class="install-version">
+                                    Version: {{editCustomer.version}}
+                                </div>
+                                <div class="input-box install-edit__cnx">
+                                    <input type="number" name="cnx" value="{{editCustomer.cnx}}" id="cnx" min="0">
+                                    <label for="cnx">Licences</label>
                                 </div>
                                 <div class="input-box install-edit__input-date">
                                     <input type="date" name="date-install" value="{{dateForInput editCustomer.date_install}}" id="edit-install-dt">
                                     <label for="date-install">Installed</label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="install-edit__sr">
+                            <button class="btn btn-primary js-get-sr">Service Request</button>
+                                {{#each da in sr}}
+                                    <div class="panel panel-default install-da">
+                                        <div class="panel-body">
+                                            <span class="date-da">{{formatDate da.created}} - </span>
+                                            <span class="title-da">{{da.title}}</span>
+                                            <p class="desc-da">{{da.description}}</p>
+                                            <span class="login-da"><i class="glyphicon glyphicon-user"></i> - {{getLogin da.login}} -</span>
+                                        </div>
+                                    </div>
+
+                                {{/each}}
                         </div>
 
                     </div>
@@ -88,7 +123,8 @@
                         <div class="modal-footer">
 
                             <button type="submit" class="btn btn-success js-submit-install" data-dismiss="modal">Save</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary js-close-install" data-dismiss="modal">Close</button>
+                           <button type="button" class="btn btn-warning js-suivant">Suivant</button>
                         </div>
                     </form>
                 </div>
