@@ -17,14 +17,22 @@ let state = {
   index:0,
 };
 
-
 Template.Stat_Install.onCreated(function() {
     var self = this;
+  console.log('onCreated')
+  Session.set('loading', true);
     self.autorun(function() {
         self.subscribe('install');
       Session.set('install-customer', Install.getList());
     });
 });
+
+Template.Stat_Install.onRendered(function(){
+  console.log('onRendered')
+  setTimeout(function(){
+    Session.set('loading', false)
+  },500)
+})
 
 Template.Stat_Install.helpers({
 	data: function() {
@@ -32,12 +40,19 @@ Template.Stat_Install.helpers({
 	},
   counter: function(){
     return Session.get('install-customer').length;
+  },
+  loading: function(){
+    return Session.get('loading');
   }
 });
 
 
 Template.Stat_Install.events({
+  'click .container-install': function(){
+    resetSession()
+  },
   'click .js-edit-install': function(e){
+    Session.set('loading', true);
     Session.set('customer-install',{});
     const data = {
       row:e.currentTarget.dataset.row,
@@ -50,12 +65,22 @@ Template.Stat_Install.events({
     };
     apiCall(data, function(){
       $('#modal-install').modal();
+      Session.set('loading', false)
     });
 
   },
   'click .js-filter-installed': function(){
     state.filter = 'installed';
     Session.set('install-customer', Install.getInstalled());
+  },
+  'submit .js-search':function(e){
+    e.preventDefault();
+    var txt = $('#search-install').val().toUpperCase();
+    var newState = Session.get('install-customer').filter(function(item){
+      return item.name.indexOf(txt) > -1
+    })
+    console.log('search: ',newState);
+    Session.set('install-customer', newState)
   },
   'click .js-filter-not': function(){
     state.filter = 'not';
@@ -64,6 +89,16 @@ Template.Stat_Install.events({
   'click .js-filter-all': function () {
     state.filter = 'all';
     Session.set('install-customer', Install.getList());
+  },
+  'click .js-all-v5-sr': function(){
+    Session.set('loading', true)
+    apiCallV2(apiSR, function (data){
+      console.log(data);
+      Session.set('AllSr', data);
+      console.log('Show Modal SR')
+      $('#modal-sr').modal();
+      Session.set('loading', false)
+    } )
   }
 });
 
@@ -136,6 +171,15 @@ Template.ModalInstall.events({
   }
 })
 
+Template.ModalSr.helpers({
+  data: function(){
+    return Session.get('AllSr');
+  },
+  count: function(){
+    return Session.get('AllSr').length;
+  }
+});
+
 updateInstall = function(id,installDt, cnx){
   console.log('update:'+id+' '+installDt);
   Install.update(id,{$set: {date_install: installDt, cnx:cnx}});
@@ -197,6 +241,16 @@ const apiCall = function(data, cb) {
       cb();
     });
   }
+}
+
+apiCallV2 = function(url, cb){
+  Meteor.http.get(url, function (err, res){
+    if (err){
+      console.log(err);
+      return
+    }
+    cb(JSON.parse(res.content));
+  })
 }
 
 const getCstgV5Sr = function(sRow, cb) {

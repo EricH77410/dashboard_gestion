@@ -59,10 +59,12 @@
 }
 
 .install-filter{
-    text-align: center;
+    display: flex;
     border: 1px solid #cccccc;
     padding: 5px;
     background: #eee;
+    justify-content: center;
+    align-items: center;
 }
 
 .counter-install {
@@ -92,4 +94,30 @@
     content: ' " ';
     color: #777;
     font-size: 2rem;
+}
+
+.counter-install button {
+    vertical-align: middle;
+}
+
+.install-filter .input-field{
+    display: inline-block;
+
+    margin-left: 10px;
+}
+
+install-filter .input-field input{
+    padding: 15px;
+}
+
+.install-filter button {
+    margin-right: 2px;
+}
+
+.table-install{
+    font-size: 1rem;
+}
+
+#modal-sr .modal-lg{
+    width: 95% !important;
 }
